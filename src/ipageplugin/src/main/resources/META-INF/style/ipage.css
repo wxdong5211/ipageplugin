@@ -1,0 +1,74 @@
+.ipage{
+	margin:0px;
+	padding:0px;
+	cursor: arrow;
+}
+.ipage ul{
+	margin:0px;
+	padding:0px;
+	border-top:#eee 1px solid;
+	border-right:0px;
+	border-bottom:0px;
+	border-left:#eee 1px solid;
+	zoom:1; 
+}
+.ipage li{
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+	border-top:0px;
+	border-right:0px;
+	border-bottom:#eee 1px solid;
+	border-left:0px;
+	height:28px;
+	vertical-align:bottom;
+}
+.ipage li div{
+	float: left;
+	text-align:center;
+	vertical-align:middle;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+	border-top:0px;
+	border-right:#eee 1px solid;
+	border-bottom:0px;
+	border-left:0px;
+	margin:0px;
+	padding:0px;
+	width:100px;
+	height:28px;
+	line-height:28px;
+}
+.ipagelist .add{ background: #f8fbff;}
+.ipagelist .normal{ background: #ffffff;}
+.ipagelist .hover{ background: #000000;}
+.ipagetitle{
+	margin:0px;
+	padding:0px;
+	border: 0px;
+	font-weight: bold;
+	color:#fff;
+	background: #26364D;
+}
+.ipagelist{
+	margin:0px;
+	padding:0px;
+	border: 0px;
+}
+.ipagelist ul{
+	border-top:0px;
+}
+.ilink{
+	font-size:14px;
+	margin:4px;
+	padding:10px 0px;
+	cursor: arrow;
+}
+.ilink a{
+	cursor: pointer;
+	margin:0px 4px;
+}
+.ilink span{ padding:0px 2px;}
+.ilink input{ margin-right:4px;}
+.ilink .page_n{ width:60px; padding:0px 2px; overflow:visible; }
