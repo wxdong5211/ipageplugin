@@ -15,8 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 
 import org.apache.ibatis.builder.xml.dynamic.ForEachSqlNode;
@@ -67,7 +65,6 @@ public class MybatisPagePlugin implements Interceptor {
 	 * @author  Invalid
 	 * @date 2012-4-12 下午3:05:00
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
         if(invocation.getTarget() instanceof RoutingStatementHandler){ 
@@ -94,13 +91,7 @@ public class MybatisPagePlugin implements Interceptor {
                         page.setEntityOrField(true);    //见com.flf.entity.Page.entityOrField 注释  
                          
 	                }else{  //参数为某个实体，该实体拥有Page属性  
-	                	if(parameterObject instanceof Map){
-	                		for(Entry<Object,Object> item : ((Map<Object,Object>)parameterObject).entrySet()){
-	                			if(item.getValue() instanceof Page)
-	                				fieldname = (String) item.getKey();
-	                		}
-	                	} else
-	                		fieldname = PageUtil.getFieldNameImplPage(parameterObject.getClass());
+	                	fieldname = PageUtil.getFieldNameImplPage(parameterObject);
 	                   		
 	                   	if(fieldname!=null)
 	                   		page = (Page) ReflectHelper.getValueByFieldName(parameterObject,fieldname);  

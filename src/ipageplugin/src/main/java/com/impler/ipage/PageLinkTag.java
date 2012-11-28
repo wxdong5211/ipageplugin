@@ -36,7 +36,7 @@ public class PageLinkTag extends TagSupport {
             page = (Page) param;  
 		}else{  //参数为某个实体，该实体拥有Page属性  
 	       	fieldname = PageUtil.
-	       			getFieldNameImplPage(param.getClass());
+	       			getFieldNameImplPage(param);
 	    	if(fieldname==null)return SKIP_BODY;
        		try {
 				page = (Page) ReflectHelper.getValueByFieldName(param,fieldname);

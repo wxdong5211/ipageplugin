@@ -13,8 +13,10 @@ package com.impler.ipage;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
@@ -102,14 +104,25 @@ public class PageUtil {
 		return htmlStr;// 返回文本字符串
 	}
 	
-	public static String getFieldNameImplPage(Class<?> clazz){
-		String fieldname = paramClassCache.get(clazz);
-    	if(fieldname==null){
-    		fieldname = ReflectHelper.
-    				getFieldNameByType(clazz, 
-    						Page.class);
-    		if(fieldname!=null)
-    			paramClassCache.put(clazz, fieldname);
+	@SuppressWarnings("unchecked")
+	public static String getFieldNameImplPage(Object obj){
+		String fieldname = null;
+		if(obj ==null) return fieldname;
+		if(obj instanceof Map){
+    		for(Entry<Object,Object> item : ((Map<Object,Object>)obj).entrySet()){
+    			if(item.getValue() instanceof Page)
+    				fieldname = (String) item.getKey();
+    		}
+    	} else{
+    		Class<?> clazz = obj.getClass();
+    		fieldname = paramClassCache.get(clazz);
+    		if(fieldname==null){
+        		fieldname = ReflectHelper.
+        				getFieldNameByType(clazz, 
+        						Page.class);
+        		if(fieldname!=null)
+        			paramClassCache.put(clazz, fieldname);
+        	}
     	}
     	return fieldname;
 	}
