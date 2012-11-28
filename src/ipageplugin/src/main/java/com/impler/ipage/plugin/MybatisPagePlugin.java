@@ -207,16 +207,18 @@ public class MybatisPagePlugin implements Interceptor {
 
     private static String getCountSql(String sql){
     	sql=sql.trim();
-    	if(sql.startsWith("(")&&sql.endsWith(""))
+    	if(sql.startsWith("(")&&sql.endsWith(")"))
     		sql = sql.substring(1,sql.length()-1);
     	int len =  getFromIndex(sql);
         String countSql = "select count(*) " + sql.substring(len); //记录统计
         int oindex= countSql.lastIndexOf("order");
-        int left = sql.indexOf("(",oindex);
-        int right = sql.indexOf(")",oindex);
-        
-        if(right<0||(left>0&&left<right)){
-        	countSql = countSql.substring(0, oindex);
+        if(oindex>0){
+	        int left = sql.indexOf("(",oindex);
+	        int right = sql.indexOf(")",oindex);
+	        
+	        if(right<0||(left>0&&left<right)){
+	        	countSql = countSql.substring(0, oindex);
+	        }
         }
     	return countSql;
     }
